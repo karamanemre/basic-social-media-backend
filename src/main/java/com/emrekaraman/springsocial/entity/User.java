@@ -1,5 +1,6 @@
 package com.emrekaraman.springsocial.entity;
 
+import com.emrekaraman.springsocial.core.constraint.UniqeUserName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
