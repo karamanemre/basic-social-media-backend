@@ -1,15 +1,11 @@
 package com.emrekaraman.springsocial.business.dtos;
 
 import com.emrekaraman.springsocial.core.constants.Messages;
-import com.emrekaraman.springsocial.core.constraint.UniqeUserName;
+import com.emrekaraman.springsocial.core.constraint.abstracts.UniqeUserName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.*;
 
 @Data
