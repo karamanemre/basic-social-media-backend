@@ -10,8 +10,9 @@ spring:
   h2:
     console:
       enabled: true
-  datasource:
-    url: jdbc:h2:file:./basic_social_media
+#  datasource:
+#    url: jdbc:h2:file:./basic_social_media
+    url: jdbc:h2:mem:testdb
     username: root
     password:
     driverClassName: org.h2.Driver
