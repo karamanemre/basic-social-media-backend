@@ -18,6 +18,20 @@
 	</properties>
 	<dependencies>
 
+		<!--Swagger Openapi-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+
+		<!--Model Mapper-->
+		<dependency>
+			<groupId>org.modelmapper.extensions</groupId>
+			<artifactId>modelmapper-spring</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
 		<!--Jpa-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -25,10 +39,10 @@
 		</dependency>
 
 		<!--Security-->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-security</artifactId>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 
 		<!--Spring Web-->
 		<dependency>
