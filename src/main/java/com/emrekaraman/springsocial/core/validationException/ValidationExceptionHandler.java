@@ -1,6 +1,6 @@
 package com.emrekaraman.springsocial.core.validationException;
 
-import com.emrekaraman.springsocial.core.constants.Messages;
+import com.emrekaraman.springsocial.business.constants.Messages;
 import com.emrekaraman.springsocial.core.utilities.ErrorDataResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
