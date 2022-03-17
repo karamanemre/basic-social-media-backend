@@ -1,4 +1,4 @@
-package com.emrekaraman.springsocial.entity;
+package com.emrekaraman.springsocial.entities.concretes;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +18,7 @@ public class User {
     private Long id;
 
     @Column(name = "user_name")
-    private String userName;
+    private String username;
 
     @Column(name = "full_name")
     private String fullName;
