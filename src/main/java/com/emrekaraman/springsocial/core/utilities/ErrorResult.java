@@ -2,11 +2,11 @@ package com.emrekaraman.springsocial.core.utilities;
 
 public class ErrorResult extends Result{
 
-    private ErrorResult(){
+    public ErrorResult(){
         super(false);
     }
 
-    private ErrorResult(String message){
+    public ErrorResult(String message){
         super(false,message);
     }
 }
