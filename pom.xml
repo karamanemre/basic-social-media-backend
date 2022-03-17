@@ -64,12 +64,19 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!--H2 Database-->
+		<!--Postgre SQL-->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+<!--		&lt;!&ndash;H2 Database&ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.h2database</groupId>-->
+<!--			<artifactId>h2</artifactId>-->
+<!--			<scope>runtime</scope>-->
+<!--		</dependency>-->
 
 		<!--Lombok-->
 		<dependency>
