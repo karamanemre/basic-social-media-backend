@@ -1,7 +1,7 @@
 package com.emrekaraman.springsocial.core.constraint.concretes;
 
 import com.emrekaraman.springsocial.core.constraint.abstracts.UniqeUserName;
-import com.emrekaraman.springsocial.dao.UserDao;
+import com.emrekaraman.springsocial.dataAccess.abstracts.UserDao;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -16,8 +16,8 @@ public class UniqeUserNameValidator implements ConstraintValidator<UniqeUserName
     }
 
     @Override
-    public boolean isValid(String userName, ConstraintValidatorContext constraintValidatorContext) {
-        if (userDao.existsByUserName(userName)){
+    public boolean isValid(String username, ConstraintValidatorContext constraintValidatorContext) {
+        if (userDao.existsByUsername(username)){
             return false;
         }
         return true;

@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = {UniqeUserNameValidator.class}) //bu annonationun kullanışacağı yerde
 public @interface UniqeUserName {
 
-    String message() default "Username must be uniqe";
+    String message() default "{basicsocialmedia.constraints.userName.UniqeUserName.message}";
 
     Class<?>[] groups() default {};
 
