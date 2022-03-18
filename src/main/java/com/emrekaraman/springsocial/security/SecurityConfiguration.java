@@ -22,10 +22,9 @@ import java.io.IOException;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final UserAuthService userAuthService;
-    //Eğer bir user arıyorsan bu servisdeki loadUserByUsername'e git orda ara
-
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserAuthService userAuthService;  //Spring user'ı burada arayacak
+
     public SecurityConfiguration(UserAuthService userAuthService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userAuthService = userAuthService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
