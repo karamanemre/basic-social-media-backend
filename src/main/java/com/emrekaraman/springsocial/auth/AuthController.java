@@ -21,12 +21,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginActivity loginActivity){
-        DataResult<LoginResponse> result = authService.login(loginActivity);
-
-        if (!result.isSuccess()){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(result);
-        }
-        return ResponseEntity.ok(result);
+    public ResponseEntity<?> login(@RequestHeader(name = "Authorization",required = false) String authorization){
+        DataResult<LoginResponse> loginResponse = authService.login(authorization);
+        return ResponseEntity.ok(loginResponse);
     }
 }
