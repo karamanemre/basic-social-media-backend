@@ -30,7 +30,7 @@ public class UserManager implements UserService {
         userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         User user = modelMapper.map(userDto,User.class);
         this.userDao.save(user);
-        return new SuccessResult("Başarılı");
+        return new SuccessResult(Messages.SUCCESSFULLY_ADDED);
     }
 
     @Override
