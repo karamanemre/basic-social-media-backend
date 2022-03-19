@@ -14,9 +14,13 @@ public class UserDetailsManager implements UserDetails {
         this.user = user;
     }
 
-    @Override //rol tanımı
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return AuthorityUtils.createAuthorityList(String.valueOf(Roles.Role_USER));
+    }
+
+    public User getUser() {
+        return this.user;
     }
 
     @Override

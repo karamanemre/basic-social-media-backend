@@ -27,8 +27,8 @@ public class UserManager implements UserService {
 
     @Override
     public Result add(UserDto userDto) {
-        userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         User user = modelMapper.map(userDto,User.class);
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         this.userDao.save(user);
         return new SuccessResult(Messages.SUCCESSFULLY_ADDED);
     }

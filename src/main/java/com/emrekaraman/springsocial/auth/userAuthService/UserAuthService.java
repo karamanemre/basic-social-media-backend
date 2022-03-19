@@ -19,7 +19,7 @@ public class UserAuthService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (!userService.existsByUserName(username).isSuccess()){
-            throw new UsernameNotFoundException(Messages.USER_NOT_FOUND);
+            throw new UsernameNotFoundException(Messages.UNAUTHORIZE);
         }
         return new UserDetailsManager(userService.findByUserName(username).getData());
     }
