@@ -15,6 +15,7 @@ public class Messages {
     //Auth Messages
     public static final String VERIFICATION_FAILED = "Verification failed";
     public static final String VERIFICATION_SUCCESS = "Verification success";
+    public static final String UNAUTHORIZE = "Unauthorize";
 
     //Business Messages
     public static final String USERNAME_NOT_FOUND = "Username not found";
