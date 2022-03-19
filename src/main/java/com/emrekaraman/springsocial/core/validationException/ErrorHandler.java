@@ -36,9 +36,7 @@ public class ErrorHandler implements ErrorController {
         error.put("status",Integer.toString(status));
 
         if (attributes.containsKey("errors")){
-            @SuppressWarnings("unchecked")
             List<FieldError> fieldErrors = (List<FieldError>) attributes.get("errors");
-
             for (FieldError fieldError : fieldErrors) {
                 error.put(fieldError.getField(), fieldError.getDefaultMessage());
             }
