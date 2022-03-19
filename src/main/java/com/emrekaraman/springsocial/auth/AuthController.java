@@ -1,7 +1,10 @@
 package com.emrekaraman.springsocial.auth;
 
+import com.emrekaraman.springsocial.auth.userAuthService.UserDetailsManager;
+import com.emrekaraman.springsocial.core.constraint.abstracts.CurrentUser;
 import com.emrekaraman.springsocial.core.utilities.DataResult;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,10 +17,9 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestHeader(name = "Authorization",required = false) String authorization){
-        DataResult<LoginResponse> loginResponse = authService.login(authorization);
-        return ResponseEntity.ok(loginResponse);
+    @PostMapping("/authenticationHandle")
+    public ResponseEntity<?> authenticationHandle(@CurrentUser UserDetailsManager userDetailsManager){
+        return ResponseEntity.ok(authService.authenticationHandle(userDetailsManager));
     }
 
 }
