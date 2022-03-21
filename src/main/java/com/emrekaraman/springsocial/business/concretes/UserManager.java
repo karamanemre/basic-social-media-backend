@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -48,5 +49,10 @@ public class UserManager implements UserService {
             return new ErrorDataResult(Messages.USER_NOT_FOUND);
         }
         return new SuccessDataResult(this.userDao.findByUsername(username),Messages.USER_FOUND);
+    }
+
+    @Override
+    public DataResult<List<User>> getALlUsers() {
+        return new SuccessDataResult(userDao.findAll(),Messages.VERIFICATION_SUCCESS);
     }
 }

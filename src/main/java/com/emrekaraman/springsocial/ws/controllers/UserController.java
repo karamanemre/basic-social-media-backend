@@ -2,12 +2,15 @@ package com.emrekaraman.springsocial.ws.controllers;
 
 import com.emrekaraman.springsocial.business.abstracts.UserService;
 import com.emrekaraman.springsocial.business.dtos.UserDto;
+import com.emrekaraman.springsocial.core.utilities.DataResult;
 import com.emrekaraman.springsocial.core.utilities.Result;
+import com.emrekaraman.springsocial.entities.concretes.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/usercontroller")
@@ -25,8 +28,13 @@ public class UserController {
     }
 
     @GetMapping("findByUsername")
-    public ResponseEntity<?> finByUsername(@RequestParam String username){
+    public ResponseEntity<DataResult<User>> finByUsername(@RequestParam String username){
         return ResponseEntity.ok(userService.findByUserName(username));
+    }
+
+    @GetMapping("getAllUsers")
+    public ResponseEntity<DataResult<List<User>>> getAllUsers(){
+        return ResponseEntity.ok(userService.getALlUsers());
     }
 
 }
