@@ -17,12 +17,6 @@ public class Messages {
     public static final String VERIFICATION_SUCCESS = "Verification success";
     public static final String UNAUTHORIZE = "Unauthorize";
 
-    //Business Messages
-    public static final String USERNAME_NOT_FOUND = "Username not found";
-    public static final String USERNAME_FOUND = "Username not found";
-    public static final String USER_NOT_FOUND = "User not found";
-    public static final String USER_FOUND = "User found";
-
     //CRUD Messages
     public static final String SUCCESSFULLY_ADDED = "Successfully added";
     public static final String FAILED_ADDED = "Failed added";
@@ -36,5 +30,13 @@ public class Messages {
     //General Messages
     public static final String SUCCESSFULLY_PROCESS = "Successfully process";
     public static final String FAILED_PROCESS = "Failed process";
+
+
+    //Business Messages
+    public static final String USERNAME_NOT_FOUND = "Username not found";
+    public static final String USERNAME_FOUND = "Username not found";
+    public static final String USER_NOT_FOUND = "User not found";
+    public static final String USER_FOUND = "User found";
+    public static final String PAGE_NUMBER_OR_SIZE_CAN_NOT_BE_LESS_THAN_ONE = "Page number or size cannot be less than 1";
 
 }
