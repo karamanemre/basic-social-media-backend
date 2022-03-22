@@ -37,4 +37,9 @@ public class UserController {
         return ResponseEntity.ok(userService.getALlUsers());
     }
 
+    @GetMapping("getAllUsersWithPage")
+    public ResponseEntity<DataResult<List<User>>> getALlUsers(@RequestParam(required = false,defaultValue = "1")  int pageNo,@RequestParam(required = false,defaultValue = "10") int pageSize){
+        return ResponseEntity.ok(userService.getALlUsers(pageNo,pageSize));
+    }
+
 }

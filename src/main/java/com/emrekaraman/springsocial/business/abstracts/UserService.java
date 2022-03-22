@@ -13,4 +13,5 @@ public interface UserService {
     Result existsByUserName(String username);
     DataResult<User> findByUserName(String username);
     DataResult<List<User>> getALlUsers();
+    DataResult<List<User>> getALlUsers(int pageNo,int pageSize);
 }
