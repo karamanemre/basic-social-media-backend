@@ -24,7 +24,7 @@ public class User {
     private String username;
 
     @Column(name = "full_name")
-    private String fullName;
+    private String fullname;
 
     @Column(name = "password")
     @JsonIgnore

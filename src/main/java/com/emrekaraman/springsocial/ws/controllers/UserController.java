@@ -5,6 +5,7 @@ import com.emrekaraman.springsocial.business.dtos.UserDto;
 import com.emrekaraman.springsocial.core.utilities.DataResult;
 import com.emrekaraman.springsocial.core.utilities.Result;
 import com.emrekaraman.springsocial.entities.concretes.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -27,19 +28,22 @@ public class UserController {
         return ResponseEntity.ok(userService.add(userDto));
     }
 
-    @GetMapping("findByUsername")
-    public ResponseEntity<DataResult<User>> finByUsername(@RequestParam String username){
-        return ResponseEntity.ok(userService.findByUserName(username));
-    }
-
-    @GetMapping("getAllUsers")
+    @GetMapping("/getAllUsers")
     public ResponseEntity<DataResult<List<User>>> getAllUsers(){
         return ResponseEntity.ok(userService.getALlUsers());
     }
 
-    @GetMapping("getAllUsersWithPage")
+    @GetMapping("/getAllUsersWithPage")
     public ResponseEntity<DataResult<List<User>>> getALlUsers(@RequestParam(required = false,defaultValue = "1")  int pageNo,@RequestParam(required = false,defaultValue = "10") int pageSize){
         return ResponseEntity.ok(userService.getALlUsers(pageNo,pageSize));
+    }
+
+    @GetMapping("/getByUsername/{username}")
+    public ResponseEntity<DataResult<User>> findByUserName(@PathVariable String username){
+        if (userService.findByUserName(username).isSuccess()){
+            return ResponseEntity.ok(userService.findByUserName(username));
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(userService.findByUserName(username));
     }
 
 }
