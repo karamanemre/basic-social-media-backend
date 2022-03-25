@@ -1,6 +1,7 @@
 package com.emrekaraman.springsocial.business.abstracts;
 
 import com.emrekaraman.springsocial.business.dtos.UserDto;
+import com.emrekaraman.springsocial.business.dtos.UserUpdateDto;
 import com.emrekaraman.springsocial.core.utilities.DataResult;
 import com.emrekaraman.springsocial.core.utilities.Result;
 import com.emrekaraman.springsocial.entities.concretes.User;
@@ -14,4 +15,5 @@ public interface UserService {
     DataResult<User> findByUserName(String username);
     DataResult<List<User>> getALlUsers();
     DataResult<List<User>> getALlUsers(int pageNo,int pageSize);
+    DataResult<User> update(UserUpdateDto userUpdateDto);
 }

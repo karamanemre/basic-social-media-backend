@@ -4,6 +4,7 @@ import com.emrekaraman.springsocial.business.abstracts.UserService;
 import com.emrekaraman.springsocial.business.constants.Messages;
 import com.emrekaraman.springsocial.business.dtos.PagesDto;
 import com.emrekaraman.springsocial.business.dtos.UserDto;
+import com.emrekaraman.springsocial.business.dtos.UserUpdateDto;
 import com.emrekaraman.springsocial.core.utilities.*;
 import com.emrekaraman.springsocial.dataAccess.abstracts.UserDao;
 import com.emrekaraman.springsocial.entities.concretes.User;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserManager implements UserService {
@@ -66,5 +68,12 @@ public class UserManager implements UserService {
         }
         Pageable pageable = PageRequest.of(pageNo-1, pageSize);
         return new SuccessDataResult(new PagesDto<User>(this.userDao.findAll(pageable)),Messages.VERIFICATION_SUCCESS);
+    }
+
+    @Override
+    public DataResult<User> update(UserUpdateDto userUpdateDto) {
+        userUpdateDto.setPassword(bCryptPasswordEncoder.encode(userUpdateDto.getPassword()));
+        User user = modelMapper.map(userUpdateDto,User.class);
+        return new SuccessDataResult<>(this.userDao.save(user),Messages.SUCCESSFULLY_UPDATED);
     }
 }

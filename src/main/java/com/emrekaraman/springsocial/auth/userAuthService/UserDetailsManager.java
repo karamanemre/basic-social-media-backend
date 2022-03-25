@@ -23,6 +23,10 @@ public class UserDetailsManager implements UserDetails {
         return this.user;
     }
 
+    public Long getId(){
+        return  this.user.getId();
+    }
+
     @Override
     public String getPassword() {
         return user.getPassword();
