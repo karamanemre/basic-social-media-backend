@@ -45,6 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers(HttpMethod.POST,"/api/auth/**").authenticated()
                     .antMatchers(HttpMethod.PUT,"/api/usercontroller/update").authenticated()
+                    .antMatchers(HttpMethod.POST,"/api/flowcontroller/add").authenticated()
                 .and()
                 .authorizeRequests()
                 .anyRequest()
