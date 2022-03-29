@@ -13,6 +13,7 @@ public interface UserService {
     Result add(UserDto userDto);
     Result existsByUserName(String username);
     DataResult<User> findByUserName(String username);
+    DataResult<User> findById(Long id);
     DataResult<List<User>> getALlUsers();
     DataResult<List<User>> getALlUsers(int pageNo,int pageSize);
     DataResult<User> update(UserUpdateDto userUpdateDto);

@@ -1,6 +1,7 @@
 package com.emrekaraman.springsocial.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,13 +9,16 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.swing.text.View;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class User {
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","flow"})
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,4 +36,7 @@ public class User {
 
     @Column(name = "image_url")
     private String imageUrl;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,targetEntity = Flow.class,fetch = FetchType.LAZY)
+    private List<Flow> flow;
 }

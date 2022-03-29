@@ -57,6 +57,11 @@ public class UserManager implements UserService {
     }
 
     @Override
+    public DataResult<User> findById(Long id) {
+        return new SuccessDataResult(this.userDao.findById(id),Messages.SUCCESSFULLY_PROCESS);
+    }
+
+    @Override
     public DataResult<List<User>> getALlUsers() {
         return new SuccessDataResult(userDao.findAll(),Messages.VERIFICATION_SUCCESS);
     }
