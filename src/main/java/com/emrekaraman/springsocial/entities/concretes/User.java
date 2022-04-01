@@ -37,6 +37,6 @@ public class User implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,targetEntity = Flow.class,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user",targetEntity = Flow.class,fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private List<Flow> flow;
 }
