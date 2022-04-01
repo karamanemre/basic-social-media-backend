@@ -8,12 +8,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "flows")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","flowImages"})
 public class Flow implements Serializable {
 
     @Id
@@ -28,7 +30,10 @@ public class Flow implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
-    @ManyToOne(targetEntity = User.class,cascade = CascadeType.REMOVE)
+    @ManyToOne(targetEntity = User.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "flow",targetEntity = FlowImage.class,fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    private List<FlowImage> flowImages;
 }

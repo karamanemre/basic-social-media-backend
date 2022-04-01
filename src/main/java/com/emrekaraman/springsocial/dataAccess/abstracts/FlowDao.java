@@ -9,4 +9,6 @@ import java.util.List;
 public interface FlowDao extends JpaRepository<Flow,Long> {
 
     Page<Flow> findAllByUserUsername(String username, Pageable pageable);
+    Long countByIdGreaterThan(Long id);
+    List<Flow> findByIdGreaterThan(Long id);
 }

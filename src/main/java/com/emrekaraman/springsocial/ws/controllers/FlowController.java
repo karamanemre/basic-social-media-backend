@@ -4,8 +4,11 @@ import com.emrekaraman.springsocial.business.abstracts.FlowService;
 import com.emrekaraman.springsocial.business.dtos.FlowDto;
 import com.emrekaraman.springsocial.core.utilities.DataResult;
 
+import com.emrekaraman.springsocial.core.utilities.Result;
+import com.emrekaraman.springsocial.core.utilities.SuccessDataResult;
 import com.emrekaraman.springsocial.dataAccess.abstracts.FlowDao;
 import com.emrekaraman.springsocial.entities.concretes.Flow;
+import com.emrekaraman.springsocial.entities.concretes.User;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -30,9 +33,24 @@ public class FlowController {
         return ResponseEntity.ok(this.flowService.add(flowDto));
     }
 
+    @DeleteMapping("/deleteById")
+    public ResponseEntity<Result> deleteById(@RequestParam Long id){
+        return ResponseEntity.ok(this.flowService.deleteById(id));
+    }
+
     @GetMapping("/getAll")
     public ResponseEntity<DataResult<List<Flow>>> getAll(@RequestParam(required = false,defaultValue = "1")  int pageNo,@RequestParam(required = false,defaultValue = "15") int pageSize){
         return ResponseEntity.ok(this.flowService.getAll(pageNo,pageSize));
+    }
+
+    @GetMapping("/findNewPosts/{id:[0-9]+}")
+    public ResponseEntity<DataResult<User>> findNewPosts(@PathVariable(name = "id") Long id){
+        return ResponseEntity.ok(this.flowService.findNewPosts(id));
+    }
+
+    @GetMapping("/findByIdGreaterThan/{id:[0-9]+}")
+    public ResponseEntity<DataResult<List<Flow>>> findByIdGreaterThan(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok(this.flowService.findByIdGreaterThan(id));
     }
 
     @GetMapping("/getAll/{username}")

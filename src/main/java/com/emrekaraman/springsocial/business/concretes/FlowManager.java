@@ -5,10 +5,10 @@ import com.emrekaraman.springsocial.business.abstracts.UserService;
 import com.emrekaraman.springsocial.business.constants.Messages;
 import com.emrekaraman.springsocial.business.dtos.FlowDto;
 import com.emrekaraman.springsocial.business.dtos.PagesDto;
-import com.emrekaraman.springsocial.core.utilities.DataResult;
-import com.emrekaraman.springsocial.core.utilities.SuccessDataResult;
+import com.emrekaraman.springsocial.core.utilities.*;
 import com.emrekaraman.springsocial.dataAccess.abstracts.FlowDao;
 import com.emrekaraman.springsocial.entities.concretes.Flow;
+import com.emrekaraman.springsocial.entities.concretes.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -48,5 +48,20 @@ public class FlowManager implements FlowService {
         return new SuccessDataResult(new PagesDto<Flow>(this.flowDao.findAllByUserUsername(username,pageable)),Messages.SUCCESSFULLY_GETALL);
     }
 
+    @Override
+    public DataResult<User> findNewPosts(Long id) {
+        return new SuccessDataResult(this.flowDao.countByIdGreaterThan(id));
+    }
+
+    @Override
+    public DataResult<List<Flow>> findByIdGreaterThan(Long id) {
+        return new SuccessDataResult(this.flowDao.findByIdGreaterThan(id));
+    }
+
+    @Override
+    public Result deleteById(Long id) {
+        this.flowDao.deleteById(id);
+        return new SuccessResult(Messages.SUCCESSFULLY_PROCESS);
+    }
 
 }
