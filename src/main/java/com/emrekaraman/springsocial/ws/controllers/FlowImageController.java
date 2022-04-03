@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/api/fileController")
+@RequestMapping("/api/flowImageController")
 public class FlowImageController {
 
     private final FlowImageService flowImageService;

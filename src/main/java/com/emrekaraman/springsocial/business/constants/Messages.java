@@ -39,4 +39,8 @@ public class Messages {
     public static final String USER_FOUND = "User found";
     public static final String PAGE_NUMBER_OR_SIZE_CAN_NOT_BE_LESS_THAN_ONE = "Page number or size cannot be less than 1";
 
+    //Flow Messages
+    public static final String FLOW_NOT_FOUND = "Flow not found";
+    public static final String FLOW_FOUND = "Flow found";
+
 }

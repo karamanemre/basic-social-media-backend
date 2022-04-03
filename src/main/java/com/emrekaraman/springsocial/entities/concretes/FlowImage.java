@@ -21,8 +21,7 @@ public class FlowImage {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @ManyToOne(fetch = FetchType.LAZY ,targetEntity = Flow.class,cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.EAGER ,targetEntity = Flow.class)
     @JoinColumn(name = "flow_id")
     private Flow flow;
-
 }
