@@ -13,7 +13,7 @@ public interface UserDao extends JpaRepository<User,Long> {
     boolean existsByUsername(String username);
     User findByUsername(String username);
 
-    @Query(value = "SELECT username From User u where u.username<>:username",nativeQuery = true)
-    List<String> findUsersByNotContainingThisUsername(String username);
+    @Query("FROM User where username<>:username")
+    List<User> findAllByUserWithoutThisUsername(String username);
 
 }

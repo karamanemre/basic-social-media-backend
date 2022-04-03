@@ -2,7 +2,6 @@ package com.emrekaraman.springsocial.ws.controllers;
 
 import com.emrekaraman.springsocial.auth.userAuthService.UserDetailsManager;
 import com.emrekaraman.springsocial.business.abstracts.UserService;
-import com.emrekaraman.springsocial.business.constants.Messages;
 import com.emrekaraman.springsocial.business.dtos.UserDto;
 import com.emrekaraman.springsocial.business.dtos.UserUpdateDto;
 import com.emrekaraman.springsocial.core.constraint.abstracts.CurrentUser;
@@ -23,7 +22,6 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -56,6 +54,7 @@ public class UserController {
     public ResponseEntity<DataResult<User>> findById(@PathVariable Long id){
         return ResponseEntity.ok(this.userService.findById(id));
     }
+
 
     @PutMapping("/update")
     @PreAuthorize("#userUpdateDto.getId() == #userDetailsManager.user.id") //SpEL(Spring Expression Language) (userDetailsManager yerine "principal.username" denebilir)

@@ -9,14 +9,14 @@ import com.emrekaraman.springsocial.core.utilities.*;
 import com.emrekaraman.springsocial.dataAccess.abstracts.UserDao;
 import com.emrekaraman.springsocial.entities.concretes.User;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class UserManager implements UserService {
@@ -77,8 +77,19 @@ public class UserManager implements UserService {
 
     @Override
     public DataResult<User> update(UserUpdateDto userUpdateDto) {
+        String oldUsername = userDao.findById(userUpdateDto.getId()).get().getUsername();
+        if (!isCanHaveThisUsername(oldUsername,userUpdateDto.getUsername())){
+            return new ErrorDataResult(Messages.USER_NAME_MUST_BE_UNIQE);
+        }
         userUpdateDto.setPassword(bCryptPasswordEncoder.encode(userUpdateDto.getPassword()));
         User user = modelMapper.map(userUpdateDto,User.class);
-        return new SuccessDataResult<>(this.userDao.save(user),Messages.SUCCESSFULLY_UPDATED);
+        return new SuccessDataResult(this.userDao.save(user),Messages.SUCCESSFULLY_UPDATED);
     }
+
+    public boolean isCanHaveThisUsername(String oldUsername,String newUsername) {
+        List<User> res = userDao.findAllByUserWithoutThisUsername(oldUsername);
+        List<Boolean> resQuery = res.stream().map(m -> m.getUsername().equals(newUsername)).collect(Collectors.toList());
+        return resQuery.contains(true) ? false : true;
+    }
+
 }

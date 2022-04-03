@@ -17,4 +17,5 @@ public interface UserService {
     DataResult<List<User>> getALlUsers();
     DataResult<List<User>> getALlUsers(int pageNo,int pageSize);
     DataResult<User> update(UserUpdateDto userUpdateDto);
+
 }
