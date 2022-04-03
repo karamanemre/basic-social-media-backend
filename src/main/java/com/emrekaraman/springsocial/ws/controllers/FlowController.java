@@ -1,7 +1,9 @@
 package com.emrekaraman.springsocial.ws.controllers;
 
+import com.emrekaraman.springsocial.auth.userAuthService.UserDetailsManager;
 import com.emrekaraman.springsocial.business.abstracts.FlowService;
 import com.emrekaraman.springsocial.business.dtos.FlowDto;
+import com.emrekaraman.springsocial.core.constraint.abstracts.CurrentUser;
 import com.emrekaraman.springsocial.core.utilities.DataResult;
 
 import com.emrekaraman.springsocial.core.utilities.Result;
@@ -34,8 +36,9 @@ public class FlowController {
     }
 
     @DeleteMapping("/deleteById")
-    public ResponseEntity<Result> deleteById(@RequestParam Long id){
-        return ResponseEntity.ok(this.flowService.deleteById(id));
+    public ResponseEntity<Result> deleteById(@RequestParam Long id, @CurrentUser UserDetailsManager userDetailsManager){
+        System.out.println(userDetailsManager.getUser().getUsername());
+        return ResponseEntity.ok(this.flowService.deleteById(id,userDetailsManager));
     }
 
     @GetMapping("/getAll")

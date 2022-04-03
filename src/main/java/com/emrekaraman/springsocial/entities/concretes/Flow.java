@@ -34,6 +34,7 @@ public class Flow implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "flow",targetEntity = FlowImage.class,fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "flow",targetEntity = FlowImage.class,fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private List<FlowImage> flowImages;
+
 }
