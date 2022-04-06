@@ -59,8 +59,11 @@ public class UserController {
     @PutMapping("/update")
     @PreAuthorize("#userUpdateDto.getId() == #userDetailsManager.user.id") //SpEL(Spring Expression Language) (userDetailsManager yerine "principal.username" denebilir)
     public ResponseEntity<DataResult<User>> update(@Valid @RequestBody UserUpdateDto userUpdateDto,@CurrentUser UserDetailsManager userDetailsManager){
-        System.out.println(userUpdateDto);
-        return ResponseEntity.ok(userService.update(userUpdateDto));
+        DataResult<User> res = userService.update(userUpdateDto);
+        if(!res.isSuccess()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
+        }
+        return ResponseEntity.ok(res);
     }
 
 }

@@ -39,4 +39,5 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user",targetEntity = Flow.class,fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private List<Flow> flow;
+
 }

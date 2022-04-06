@@ -3,8 +3,10 @@ import com.emrekaraman.springsocial.entities.concretes.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+
 
 public class UserDetailsManager implements UserDetails {
 
@@ -16,7 +18,7 @@ public class UserDetailsManager implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList(String.valueOf(Roles.Role_USER));
+        return AuthorityUtils.createAuthorityList(String.valueOf(Roles.USER));
     }
 
     public User getUser() {

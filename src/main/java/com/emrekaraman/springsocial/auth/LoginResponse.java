@@ -13,5 +13,5 @@ public class LoginResponse {
     private int id;
     private String username;
     private String password;
-    public  Stream<Object> authorities;
+    public Stream<Object> authorities;
 }
