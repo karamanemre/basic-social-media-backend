@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","flow"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","flow","followedLists","followerLists"})
 public class User implements Serializable {
 
     @Id
@@ -37,7 +37,10 @@ public class User implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @OneToMany(mappedBy = "user",targetEntity = Flow.class,fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user",targetEntity = Flow.class,fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     private List<Flow> flow;
 
+
+    @OneToMany(mappedBy = "user",targetEntity = Flow.class,fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    private List<FollowedList> followedLists;
 }

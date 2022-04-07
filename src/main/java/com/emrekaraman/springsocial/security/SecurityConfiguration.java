@@ -1,8 +1,11 @@
 package com.emrekaraman.springsocial.security;
 
 import com.emrekaraman.springsocial.auth.userAuthService.UserAuthService;
+import com.emrekaraman.springsocial.security.jwt.TokenFilter;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -18,10 +22,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserAuthService userAuthService;  //Spring user'ı burada arayacak
+    private final TokenFilter tokenFilter;
 
-    public SecurityConfiguration(UserAuthService userAuthService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public SecurityConfiguration(UserAuthService userAuthService, BCryptPasswordEncoder bCryptPasswordEncoder, TokenFilter tokenFilter) {
         this.userAuthService = userAuthService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.tokenFilter = tokenFilter;
+    }
+
+    @Bean public AuthenticationManager getAuthenticationManager() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     @Override
@@ -30,22 +40,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http
-                .httpBasic()
+                .exceptionHandling()
                 .authenticationEntryPoint(new AuthEntryPoint());
 
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/api/auth/**").authenticated()
                 .antMatchers(HttpMethod.PUT,"/api/usercontroller/update").authenticated()
-                .antMatchers(HttpMethod.POST,"/api/flowcontroller/add").authenticated()
-                .antMatchers(HttpMethod.DELETE,"/api/flowcontroller/deleteById").authenticated()
+                .antMatchers(HttpMethod.GET,"/api/flowcontroller/**").authenticated()
                 .and()
                 .authorizeRequests()
                 .anyRequest()
                 .permitAll();
 
-
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override

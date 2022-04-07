@@ -7,5 +7,5 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 
 public interface AuthService {
-    DataResult<LoginResponse> authenticationHandle(UserDetailsManager userDetailsManager);
+    DataResult<LoginResponse> authenticationHandle(LoginActivity loginActivity);
 }

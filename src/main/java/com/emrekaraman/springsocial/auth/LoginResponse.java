@@ -13,5 +13,6 @@ public class LoginResponse {
     private int id;
     private String username;
     private String password;
+    private String token;
     public Stream<Object> authorities;
 }

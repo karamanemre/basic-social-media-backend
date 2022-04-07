@@ -18,7 +18,7 @@ public class AuthController {
     }
 
     @PostMapping("/authenticationHandle")
-    public ResponseEntity<?> authenticationHandle(@CurrentUser UserDetailsManager userDetailsManager){
-        return ResponseEntity.ok(authService.authenticationHandle(userDetailsManager));
+    public ResponseEntity<?> authenticationHandle(@RequestBody LoginActivity loginActivity){
+        return ResponseEntity.ok(authService.authenticationHandle(loginActivity));
     }
 }
